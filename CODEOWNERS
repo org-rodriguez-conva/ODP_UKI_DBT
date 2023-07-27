@@ -1,0 +1,7 @@
+# In this feel, the following Squads needs to be replaced with the real name of the Teams
+        # CODEOWNERS
+        * @Squad_Solutions_Engineer @Squad_Admin @Squad_Agile_Coach
+
+        # Exclude master branch
+        / !master @Squad_Engineer
+        
