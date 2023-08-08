@@ -1,0 +1,19 @@
+name: Reject Pull Request if File Modified
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  check_file_modification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check File Modification
+        run: |
+          BASE_COMMIT=$(git rev-parse ${{ github.event.before }})
+          HEAD_COMMIT=$(git rev-parse ${{ github.sha }})
+          if git diff --name-only $BASE_COMMIT $HEAD_COMMIT | grep "CODEOWNERS"; then
+            echo "CODEOWNERS has been modified. Rejecting the pull request."
+            exit 1
+          fi
