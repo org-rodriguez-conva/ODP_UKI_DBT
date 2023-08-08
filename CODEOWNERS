@@ -3,5 +3,5 @@
         * @Squad_Solutions_Engineer @Squad_Admin @Squad_Agile_Coach
 
         # Exclude master branch
-        / !master @Squad_Engineer
+        / !master @Squad_Engineer @Squad_Agile_Coach
         
