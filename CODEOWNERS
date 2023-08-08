@@ -1,7 +1,7 @@
 # In this feel, the following Squads needs to be replaced with the real name of the Teams
 # CODEOWNERS
-* @Squad_Admin @Squad_Organization @Squad_Tagus_Engineer
+* @org-rodriguez-conva/Squad_Admin @org-rodriguez-conva/Squad_Organization @org-rodriguez-conva/Squad_Tagus_Engineer
 
 # Exclude master branch
-/ !master @Squad_Tagus_Engineer
+/ !master @org-rodriguez-conva/Squad_Tagus_Engineer
         
