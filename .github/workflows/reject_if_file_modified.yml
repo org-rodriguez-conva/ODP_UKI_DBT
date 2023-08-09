@@ -1,9 +1,9 @@
 name: Reject Pull Request if File Modified
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  pull_request_target:
+    types: [opened, reopened]
+    paths:
+      - CODEOWNERS
 
 jobs:
   check_file_modification:
@@ -12,11 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
   
-      - name: Check File Modification
-        run: |
-          BASE_COMMIT=$(git rev-parse ${{ github.event.before }})
-          HEAD_COMMIT=$(git rev-parse ${{ github.sha }})
-          if git diff --name-only $BASE_COMMIT $HEAD_COMMIT | grep "CODEOWNERS"; then
-            echo "CODEOWNERS has been modified. Rejecting the pull request."
-            exit 1
-          fi
+      - uses: superbrothers/close-pull-request@v3
+        with:
+          comment: "hi. please do not touch 'untouchable_file'."
