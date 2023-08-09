@@ -2,8 +2,7 @@ name: Reject Pull Request if File Modified
 on:
   pull_request_target:
     types: [opened, reopened]
-    paths:
-      - CODEOWNERS
+
 
 jobs:
   check_codeowners_modification:
