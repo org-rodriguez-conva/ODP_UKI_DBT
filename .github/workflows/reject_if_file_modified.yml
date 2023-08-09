@@ -6,12 +6,18 @@ on:
       - CODEOWNERS
 
 jobs:
-  check_file_modification:
+  check_codeowners_modification:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-  
-      - uses: superbrothers/close-pull-request@v3
-        with:
-          comment: "hi. please do not touch 'untouchable_file'."
+        uses: actions/checkout@v2  # This fetches your repository's code
+
+      - name: Check CODEOWNERS Modification
+        run: |
+          BASE_COMMIT=$(git rev-parse ${{ github.event.before }})
+          HEAD_COMMIT=$(git rev-parse ${{ github.sha }})
+
+          if git diff --name-only $BASE_COMMIT $HEAD_COMMIT | grep "CODEOWNERS"; then
+            echo "CODEOWNERS file has been modified. Rejecting the pull request."
+            exit 1
+          fi
