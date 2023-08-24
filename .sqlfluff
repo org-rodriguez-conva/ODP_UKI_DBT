@@ -1,5 +1,6 @@
 [sqlfluff]
 dialect = ansi
+exclude_rules = CP01
 
 [sqlfluff:indentation]
 tab_space_size = 4
